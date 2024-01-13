@@ -3,6 +3,7 @@ import telebot
 import hashlib
 import hmac
 import json
+import twitchio
 from flask import Flask, request, jsonify
 import secrets
 
@@ -35,7 +36,7 @@ HMAC_PREFIX = 'sha256='
 def get_secret():
     # TODO: Get secret from secure storage. This is the secret you pass
     # when you subscribed to the event.
-    return 'lwZZic60Ays4XXNBpzF2im8KPKGHQNc2'
+    return ''
 
 # Build the message used to get the HMAC.
 def get_hmac_message(request):
