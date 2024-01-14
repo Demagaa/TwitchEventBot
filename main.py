@@ -1,25 +1,12 @@
-import os
-import telebot
 import hashlib
 import hmac
 import json
-import twitchio
-from flask import Flask, request, jsonify
-import secrets
 
-# bot = telebot.TeleBot('6667630731:AAFRdAj3DcdvL5LPECZIQzAqKrov6EhT9Nw')
-#
-#
-# @bot.message_handler(commands=['start', 'hello'])
-# def send_welcome(message):
-#     bot.reply_to(message, "Howdy, how are you doing?")
-#
-
-# bot.infinity_polling()
+from flask import Flask, request
 
 app = Flask(__name__)
 
-# Notification request headers
+# Notification r`equest headers
 TWITCH_MESSAGE_ID = 'Twitch-Eventsub-Message-Id'.lower()
 TWITCH_MESSAGE_TIMESTAMP = 'Twitch-Eventsub-Message-Timestamp'.lower()
 TWITCH_MESSAGE_SIGNATURE = 'Twitch-Eventsub-Message-Signature'.lower()
