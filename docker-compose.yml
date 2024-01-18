@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  mysql-subscribers:
+    container_name: mysql-subscribers
+    build:
+      context: .
+#      dockerfile: Dockerfile
+    environment:
+      MYSQL_DB: subscribers
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATA: /data/mysql
+    command: --init-file /data/application/init.sql
+    volumes:
+      - /data/application/init.sql
+    ports:
+      - "3308:3306"

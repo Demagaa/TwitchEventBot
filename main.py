@@ -5,8 +5,6 @@ import os
 import requests
 from flask import Flask, request
 
-import bot
-
 app = Flask(__name__)
 
 # Notification r`equest headers
@@ -25,17 +23,22 @@ HMAC_PREFIX = 'sha256='
 
 BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
 
-def get_updates():
+def get_subscribers():
     # Telegram Bot API endpoint for getting updates
-    api_url = f'https://api.telegram.org/bot{BOT_TOKEN}/getUpdates'
+    api_url = f'https:/localhost:8082/getSubscribers'
 
     # Make a GET request to the Telegram Bot API
     response = requests.get(api_url)
-    response_data = response.json()
-    chat_ids = list(set([update['message']['chat']['id'] for update in response_data.get('result', [])]))
+
+    if response.status_code == 200:
+        subscribers = response.json()['subscribers']
+        return subscribers
+        print("List of subscribers:", subscribers)
+    else:
+        print("Failed to retrieve subscribers. Status code:", response.status_code)
+
 
     # Return the JSON response from the Telegram Bot API
-    return chat_ids
 
 
 def get_secret():
@@ -67,10 +70,15 @@ def streamstart():
 
         # Get JSON object from body, so you can process the message.
         notification = json.loads(request.data.decode('utf-8'))
-        chat_id = get_updates()
+
+
+        subscribers_chat_ids = get_subscribers()
+
 
         if MESSAGE_TYPE_NOTIFICATION == request.headers[MESSAGE_TYPE]:
-            bot.send_notif(notification.get('event', {}).get('broadcaster_user_name'), chat_id)
+            for subscriber in subscribers_chat_ids:
+                # TODO make API to bot microservice
+                bot.send_notif(notification.get('event', {}).get('broadcaster_user_name'), subscriber)
 
             print(f"Event type: {notification['subscription']['type']}")
             print(json.dumps(notification['event'], indent=4))
