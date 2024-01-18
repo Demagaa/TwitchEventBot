@@ -1,14 +1,18 @@
 import telebot
 import requests
+import os
 
-bot = telebot.TeleBot('6667630731:AAFRdAj3DcdvL5LPECZIQzAqKrov6EhT9Nw')
+BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
+bot = telebot.TeleBot(BOT_TOKEN)
 
 msg = None
 
+subscribers = []
 @bot.message_handler(commands=['subscribe'])
 def subscribe(message):
     print("Received subscription")
     api_url = f'http://localhost:8082/createSubscribtion'
+    subscribers.append(message.chat.id)
     # Assuming message.chat.id is an integer
     data_dict = {'chat_id': message.chat.id}
 

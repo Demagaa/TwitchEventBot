@@ -2,7 +2,9 @@ import hashlib
 import hmac
 import json
 import os
+
 import requests
+import telebot
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -22,37 +24,38 @@ MESSAGE_TYPE_REVOCATION = 'revocation'
 HMAC_PREFIX = 'sha256='
 
 BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
+bot = telebot.TeleBot(BOT_TOKEN)
+
 
 def get_subscribers():
-    # Telegram Bot API endpoint for getting updates
-    api_url = f'https:/localhost:8082/getSubscribers'
+    api_url = f'http://localhost:8082/getSubscribers'
 
-    # Make a GET request to the Telegram Bot API
     response = requests.get(api_url)
-
     if response.status_code == 200:
-        subscribers = response.json()['subscribers']
+
+        subscribers = []
+        subscribers.extend(response.json())
+        print("List of subscribers:")
+        print(subscribers)
         return subscribers
-        print("List of subscribers:", subscribers)
+
     else:
         print("Failed to retrieve subscribers. Status code:", response.status_code)
-
-
-    # Return the JSON response from the Telegram Bot API
 
 
 def get_secret():
     return os.environ.get('TWITCH_CLIENT_SECRET')
 
-# Build the message used to get the HMAC.
+
 def get_hmac_message(request):
     return (request.headers[TWITCH_MESSAGE_ID] +
             request.headers[TWITCH_MESSAGE_TIMESTAMP] +
             request.data.decode('utf-8'))
 
-# Get the HMAC.
+
 def get_hmac(secret, message):
     return HMAC_PREFIX + hmac.new(secret.encode('utf-8'), message.encode('utf-8'), hashlib.sha256).hexdigest()
+
 
 # Verify whether our hash matches the hash that Twitch passed in the header.
 def verify_message(hmac, verify_signature):
@@ -64,21 +67,18 @@ def streamstart():
     secret = get_secret()
     message = get_hmac_message(request)
     hmac_value = get_hmac(secret, message)
-    print("secret " + secret)
     if verify_message(hmac_value, request.headers[TWITCH_MESSAGE_SIGNATURE]):
         print("Signatures match")
 
-        # Get JSON object from body, so you can process the message.
         notification = json.loads(request.data.decode('utf-8'))
-
 
         subscribers_chat_ids = get_subscribers()
 
-
         if MESSAGE_TYPE_NOTIFICATION == request.headers[MESSAGE_TYPE]:
             for subscriber in subscribers_chat_ids:
-                # TODO make API to bot microservice
-                bot.send_notif(notification.get('event', {}).get('broadcaster_user_name'), subscriber)
+                print("sending for following chat id:", subscriber)
+                bot.send_message(subscriber,
+                                 notification.get('event', {}).get('broadcaster_user_name') + " just went online")
 
             print(f"Event type: {notification['subscription']['type']}")
             print(json.dumps(notification['event'], indent=4))
@@ -97,6 +97,6 @@ def streamstart():
         print('403')  # Signatures didn't match.
         return '', 403
 
+
 if __name__ == '__main__':
     app.run(port=443)
-
