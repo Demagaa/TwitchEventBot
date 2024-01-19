@@ -5,9 +5,12 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 subscribers = []
+
+
 @app.route('/getSubscribers', methods=['GET'])
 def getSubscribers():
     return jsonify(subscribers)
+
 
 @app.route('/createSubscribtion', methods=['POST'])
 def createSubscribtion():

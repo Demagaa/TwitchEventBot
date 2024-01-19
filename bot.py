@@ -2,7 +2,7 @@ import telebot
 import requests
 import os
 
-BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
+BOT_TOKEN = os.environ.get('BOT_TOKEN')
 bot = telebot.TeleBot(BOT_TOKEN)
 
 msg = None
@@ -22,6 +22,7 @@ def subscribe(message):
 def send_notif(nickname, chat_ids):
     for chat_id in chat_ids:
         bot.send_message(chat_id, f"{nickname} just went online")
+
 
 bot.infinity_polling()
 

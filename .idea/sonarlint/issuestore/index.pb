@@ -26,18 +26,12 @@ w
 G.idea/sonarlint/issuestore/9/f/9fe84ebb15faf917b7def6236dba604453cc61e0,f\0\f0e0f9cec86fe4b939ae22be5264c758801eb28f
 Å
 Q.idea/sonarlint/securityhotspotstore/9/f/9fe84ebb15faf917b7def6236dba604453cc61e0,b\b\bbf202272a96de5cd6b6828ffdc55fb3ce45289c
-Å
-Q.idea/sonarlint/securityhotspotstore/9/c/9c8064189e73a0ddeeb48a04ef251901e5070556,5\4\54e3c2ddd969a059d03275c9ae36a17e18641782
 w
 G.idea/sonarlint/issuestore/8/8/88a9255124c95bdc913197c120a8d560edc59c8e,a\e\ae9ddf453f55affea2d6b9e3973cac1eb2efb4e1
-Å
-Q.idea/sonarlint/securityhotspotstore/6/2/624eb18123a1bd0457a58db7850339cc1106ad80,a\2\a21c94b321437c5ba02ecc76e2e71f11d8c731bc
 Å
 Q.idea/sonarlint/securityhotspotstore/8/8/88a9255124c95bdc913197c120a8d560edc59c8e,9\0\909762385fc6eb20f922a91c6865741308b57f2c
 Å
 Q.idea/sonarlint/securityhotspotstore/6/6/6651ddff6eb82c840ced7c1dddee15c6e1913dd4,5\e\5e4805de49b3e0799af661639276d994cb0e08ae
-w
-G.idea/sonarlint/issuestore/6/2/624eb18123a1bd0457a58db7850339cc1106ad80,8\0\808b23fe2c267003f950436a716223125d8957d6
 Å
 Q.idea/sonarlint/securityhotspotstore/e/a/eab5127b379597972004b7613f8cacc78c27e0b6,9\a\9a97fdcb483987c234a34e17facf6f57d255211c
 w
@@ -48,3 +42,7 @@ Q.idea/sonarlint/securityhotspotstore/0/7/07052b2022251fd7b0c4790282a5c5fa2678ce
 Q.idea/sonarlint/securityhotspotstore/9/3/93374d5ad20eb17306a1988725b9b8f5bbaeaf0e,3\1\316be34a674891d43533b04bb25e774ae24e472b
 w
 G.idea/sonarlint/issuestore/e/a/eab5127b379597972004b7613f8cacc78c27e0b6,1\7\17fbf84d12c0f8769a2e51eb0bfdaca01615537c
+B
+twitch_listener.py,5\6\56d44d8dba7baa46c252b73460a95a6f0260350e
+8
+bash.ps1,4\5\450837c5677c1a6fe34e39e1e7d87481b0f44dda
