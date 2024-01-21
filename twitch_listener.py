@@ -1,11 +1,12 @@
+import configparser
 import hashlib
 import hmac
 import json
-import os
 
-import requests
 import telebot
 from flask import Flask, request
+
+import user_manager
 
 app = Flask(__name__)
 
@@ -23,28 +24,20 @@ MESSAGE_TYPE_REVOCATION = 'revocation'
 # Prepend this string to the HMAC that's created from the message
 HMAC_PREFIX = 'sha256='
 
-BOT_TOKEN = os.environ.get('BOT_TOKEN')
+configparser = configparser.ConfigParser()
+configparser.read('config.ini')
+
+BOT_TOKEN = configparser.get('Keys', 'BOT_TOKEN')
 telebot = telebot.TeleBot(BOT_TOKEN)
 
 
 def get_subscribers():
-    api_url = f'http://localhost:8082/getSubscribers'
-
-    response = requests.get(api_url)
-    if response.status_code == 200:
-
-        subscribers = []
-        subscribers.extend(response.json())
-        print("List of subscribers:")
-        print(subscribers)
-        return subscribers
-
-    else:
-        print("Failed to retrieve subscribers. Status code:", response.status_code)
+    subscribers = user_manager.get_user_ids()
+    return subscribers
 
 
 def get_secret():
-    return os.environ.get('TWITCH_CLIENT_SECRET')
+    return configparser.get('Keys', 'TWITCH_CLIENT_SECRET')
 
 
 def get_hmac_message(request):
@@ -78,7 +71,9 @@ def streamstart():
             for subscriber in subscribers_chat_ids:
                 print("sending for following chat id:", subscriber)
                 telebot.send_message(subscriber,
-                                     notification.get('event', {}).get('broadcaster_user_name') + " just went online")
+                                     notification.get('event', {}).get(
+                                         'broadcaster_user_name') + " только что запустил стримчанский, бегом "
+                                                                    "передавать за проезд")
 
             print(f"Event type: {notification['subscription']['type']}")
             print(json.dumps(notification['event'], indent=4))
@@ -97,6 +92,6 @@ def streamstart():
         print('403')  # Signatures didn't match.
         return '', 403
 
+
 if __name__ == '__main__':
     app.run(port=443)
-

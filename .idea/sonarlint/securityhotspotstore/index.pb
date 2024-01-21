@@ -46,3 +46,24 @@ B
 twitch_listener.py,5\6\56d44d8dba7baa46c252b73460a95a6f0260350e
 8
 bash.ps1,4\5\450837c5677c1a6fe34e39e1e7d87481b0f44dda
+@
+UserIdManager.py,2\b\2b409aeff9a8d86989b23a7e551453c5f1683724
+?
+user_manager.py,7\7\77ecb8b3971df5d7130844de192c6c7f20291284
+8
+user_ids,7\f\7f042693291551ff7252cb7c2495880ee50ad6c5
+:
+
+config.ini,a\3\a3369b85f2e190fd575d9636871f39c4f1253ca4
+=
+encryption.py,e\5\e5936da97e8971b7ed9e50611c09757340e652ee
+7
+load.py,e\7\e70b8237b71ef57b8b63075d9276acb71c81b18d
+<
+ngrok_run.py,f\0\f004cdfb420cfcf4edd669ec534088a3ebcc910d
+9
+	main.spec,4\1\41397cf4a1ef942156e51f7fda480c663f5b9de6
+C
+install_windows.bat,b\3\b302920c21ac63f1bd8a0bbdf6c213842dd5bedb
+w
+G.idea/sonarlint/issuestore/9/3/93374d5ad20eb17306a1988725b9b8f5bbaeaf0e,c\d\cd3d62729e4380bdca688d2479cb303bc31fad95
