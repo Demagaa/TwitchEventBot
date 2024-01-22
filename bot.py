@@ -12,15 +12,18 @@ bot = telebot.TeleBot(BOT_TOKEN)
 
 msg = None
 
-subscribers = []
-
 
 @bot.message_handler(commands=['subscribe'])
 def subscribe(message):
-    print("Received subscription")
-    subscribers.append(message.chat.id)
-    # Assuming message.chat.id is an integer
-    user_manager.save_user_id(message.chat.id)
+    response = user_manager.save_user_id(message.chat.id)
+    bot.reply_to(message, response)
+
+
+
+@bot.message_handler(commands=['unsubscribe'])
+def subscribe(message):
+    response = user_manager.remove_user_id(message.chat.id)
+    bot.reply_to(message, response)
 
 
 bot.infinity_polling()

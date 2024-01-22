@@ -9,15 +9,6 @@ B
 TwitchEventBot.iml,e\a\eab5127b379597972004b7613f8cacc78c27e0b6
 6
 bot.py,9\3\93374d5ad20eb17306a1988725b9b8f5bbaeaf0e
-B
-docker-compose.yml,3\5\35b8c13cf2eb2a194eada000eb310d65aed53b2a
-I
-data/application/init.sql,0\7\07052b2022251fd7b0c4790282a5c5fa2678ce20
-:
-
-Dockerfile,6\6\6651ddff6eb82c840ced7c1dddee15c6e1913dd4
-G
-subscribers_listener.py,1\4\148c76148ef113501ee7c20ff6b9f70225f23619
 w
 G.idea/sonarlint/issuestore/3/5/35b8c13cf2eb2a194eada000eb310d65aed53b2a,f\a\fa996fb25dd8afe6bf56a281bdff677f139b23bf
 Å
@@ -44,10 +35,6 @@ w
 G.idea/sonarlint/issuestore/e/a/eab5127b379597972004b7613f8cacc78c27e0b6,1\7\17fbf84d12c0f8769a2e51eb0bfdaca01615537c
 B
 twitch_listener.py,5\6\56d44d8dba7baa46c252b73460a95a6f0260350e
-8
-bash.ps1,4\5\450837c5677c1a6fe34e39e1e7d87481b0f44dda
-@
-UserIdManager.py,2\b\2b409aeff9a8d86989b23a7e551453c5f1683724
 ?
 user_manager.py,7\7\77ecb8b3971df5d7130844de192c6c7f20291284
 8
@@ -55,10 +42,6 @@ B
 :
 
 config.ini,a\3\a3369b85f2e190fd575d9636871f39c4f1253ca4
-=
-encryption.py,e\5\e5936da97e8971b7ed9e50611c09757340e652ee
-7
-load.py,e\7\e70b8237b71ef57b8b63075d9276acb71c81b18d
 <
 ngrok_run.py,f\0\f004cdfb420cfcf4edd669ec534088a3ebcc910d
 9
